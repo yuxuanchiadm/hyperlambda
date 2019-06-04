@@ -29,6 +29,23 @@ const vm = new Vue({
             vm.$data.alertType = type;
             vm.$data.alertTitle = text
         },
+        loadExample: () => {
+            vm.$data.input =
+                "(λfix. λif. λisZero. λ0. λplus. λpred. λ5." + "\n" +
+                "  (fix (λself. λx. if" + "\n" +
+                "    (isZero x)" + "\n" +
+                "    0" + "\n" +
+                "    (plus x (self (pred x)))" + "\n" +
+                "  )) 5" + "\n" +
+                ")" + "\n" +
+                "(λf.(λx.f (x x)) (λx.f (x x)))" + "\n" +
+                "(λb.λt.λf.b t f)" + "\n" +
+                "(λn.n (λx.λt.λf.f) (λt.λf.t))" + "\n" +
+                "(λf.λx.x)" + "\n" +
+                "(λm.λn.λf.λx.m f (n f x))" + "\n" +
+                "(λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u))" + "\n" +
+                "(λf.λx.f (f (f (f (f x)))))"
+        },
         betaReduce: () => {
             vm.$data.output = HyperLambda.betaReduce(
                 vm.$data.input,

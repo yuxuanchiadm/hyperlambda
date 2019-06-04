@@ -32,6 +32,7 @@
             resize="both"
             placeholder="Output">
     </el-input>
+    <el-button v-on:click="loadExample()" size="mini" round>Load example</el-button>
     <div style="font-size: 12px;">
         Max step:
         <el-input-number v-model="betaReduceConfig.maxStep" :min="0" :max="2147483647" :controls=false
