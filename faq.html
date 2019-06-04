@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hyper Lambda</title>
+</head>
+
+<body>
+<h1>FAQ</h1>
+<h2>How do you implement this into JavaScript?</h2>
+<p>
+    So basically it used a lambda calculus all-in-one library written by myself in Scala called LamcalcJ.
+    And cross compiled it to JavaScript using ScalaJS.
+</p>
+<h2>How does it prevent performance problem when deal with larger lambda term?</h2>
+<p>
+    First I used a technique called trampoline to optimize compiler, pretty printer and reducer.
+    Smash long call stack into heap.
+    So prevented any potential stack overflow exception in VM runtime.
+    Then for reducer when it found and reduced one redex in lambda term.
+    It doesn't restart from scratch.
+    Depend on reduction strategy it will continue search next redex from current position.
+</p>
+<h2>Browser just stop responding when try to reduce a term that does not have normal form. Can you do something for it?</h2>
+<p>
+    First limit your max reduction step.
+    It will still produce result when max step reached.
+    Unfortunately it can't be implement in the ways that you can click a button to interrupt reduction.
+    The trampoline monad itself has a backdoor that when it detected current thread is interrupted.
+    It will throw an exception to abort.
+    That will work in JVM but not in JS.
+    Because we only have one thread in JS.
+    And when some JS code is evaluating browser just stop responding.
+    There is no way to interrupt current thread to stop reduction (At least by my knowledge).
+</p>
+<h2>Does it support custom syntax?</h2>
+<p>
+    Yes. But not yet implemented in frontend. PR please!
+</p>
+<h2>Can I know how many steps passed after reduction terminated</h2>
+<p>
+    Yes. But not yet implemented in frontend. PR please!
+</p>
+<h2>Is there an standalone version?</h2>
+<p>
+    Yes:
+    <a href="https://github.com/yuxuanchiadm/lambdacore">https://github.com/yuxuanchiadm/lambdacore</a>
+</p>
+</body>
+
+</html>
