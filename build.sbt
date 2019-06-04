@@ -4,7 +4,7 @@ enablePlugins(GhpagesPlugin)
 name            := "hyperlambda"
 version         := "0.1"
 scalaVersion    := "2.12.8"
-git.remoteRepo  := "git@github.com:yuxuanchiadm/hyperlambda.git"
+git.remoteRepo  := "https://github.com/yuxuanchiadm/hyperlambda.git"
 ghpagesNoJekyll := true
 
 resolvers += Resolver.mavenLocal
